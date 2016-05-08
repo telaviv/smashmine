@@ -1,16 +1,25 @@
-import React, { Component} from 'react';
+import React, { Component, PropTypes } from 'react';
+import { reduxForm } from 'redux-form';
 
 
-export default class ComparePage extends Component {
+class CompareForm extends Component {
+  static propTypes = {
+    fields: PropTypes.object.isRequired,
+  }
+
   render() {
+    const { fields: { player1, player2 } } = this.props;
     return (
-      <p>
-        <form name="compare">
-          <input class="player-1" type="text"/>
-          <input class="player-2" type="text"/>
-          <button type="submit">Submit</button>
-        </form>
-      </p>
+      <form name="compare">
+        <input className="player1" type="text" placeholder="Shaky" {...player1} />
+        <input className="player2" type="text" placeholder="Trevonte" {...player2} />
+        <button type="submit">Submit</button>
+      </form>
     );
   }
 }
+
+export default reduxForm({
+  form: 'compare',
+  fields: ['player-1', 'player-2'],
+})(CompareForm);
