@@ -13,7 +13,7 @@ class CompareForm extends Component {
   submit(e) {
     e.preventDefault();
     const { fields: { player1, player2 }, dispatch } = this.props;
-    const action = CompareActions.submitCompare(player1, player2);
+    const action = CompareActions.submitCompare(player1.value, player2.value);
     dispatch(action);
   }
 
@@ -31,7 +31,7 @@ class CompareForm extends Component {
 
 CompareForm = reduxForm({
   form: 'compare',
-  fields: ['player-1', 'player-2'],
+  fields: ['player1', 'player2'],
 })(CompareForm);
 
 
