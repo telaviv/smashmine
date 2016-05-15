@@ -39,6 +39,8 @@ class Comparison extends Component {
           return (
             <tr>
               <td>{match.winner} > {match.loser}</td>
+              <td>{match.score}</td>
+              <td>{match.tournament}</td>
             </tr>
           )
         })}
