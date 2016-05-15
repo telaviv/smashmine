@@ -10,6 +10,7 @@ export default function compare(state = null, action) {
         player1: action.data.players[0],
         player2: action.data.players[1],
         matches: action.data.matches,
+        winPercentage: action.data['win-percentage'],
       };
     default:
       return state;
