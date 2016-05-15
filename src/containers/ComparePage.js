@@ -31,9 +31,28 @@ class CompareForm extends Component {
 }
 
 class Comparison extends Component {
+
+  setRecord() {
+    const { player1: { name: p1name },
+            player2: { name: p2name },
+            matches: matches } = this.props;
+    let p1wins = 0;
+    let p2wins = 0;
+    matches.map( match => {
+      if (p1name === match.winner) {
+        p1wins++;
+      } else if (p2name === match.winner) {
+        p2wins++;
+      }
+    });
+    return p1wins + ' - ' + p2wins;
+  }
+
   render() {
     const { matches } = this.props;
     return (
+      <div>
+      <p>Set Record: {this.setRecord()}</p>
       <table>
         {matches.map( match => {
           return (
@@ -45,6 +64,7 @@ class Comparison extends Component {
           )
         })}
       </table>
+      </div>
     )
   }
 }
