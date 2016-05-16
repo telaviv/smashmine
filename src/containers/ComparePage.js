@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 import { If, Then } from 'react-if';
+import { sprintf } from 'sprintf-js';
 import * as CompareActions from '../actions/compare';
 
 
@@ -48,10 +49,16 @@ class Comparison extends Component {
     return p1wins + ' - ' + p2wins;
   }
 
+  winPercentage() {
+    const { winPercentage } = this.props;
+    return sprintf('%.1f%%', winPercentage * 100);
+  }
+
   render() {
-    const { matches } = this.props;
+    const { player1, player2, matches } = this.props;
     return (
       <div>
+      <p>{player1.name} has a {this.winPercentage()} chance of beating {player2.name}</p>
       <p>Set Record: {this.setRecord()}</p>
       <table>
         {matches.map( match => {
@@ -60,6 +67,7 @@ class Comparison extends Component {
               <td>{match.winner} > {match.loser}</td>
               <td>{match.score}</td>
               <td>{match.tournament}</td>
+              <td>{match.date}</td>
             </tr>
           )
         })}
