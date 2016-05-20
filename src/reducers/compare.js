@@ -1,16 +1,34 @@
 import { REQUEST_COMPARISON, RECIEVE_COMPARISON } from '../actions/compare';
 
-export default function compare(state = null, action) {
+function mergeComparisonCache(state, data) {
+  const { cachedComparisons } = state;
+  const { player1, player2 } = data;
+  return Object.assign(
+    {},
+    cachedComparisons,
+    {[player1 + '-' + player2]: createComparison(data)}
+  );
+}
+
+
+function createComparison(data) {
+  return  {
+    player1: data.player1,
+    player2: data.player2,
+    matches: data.matches,
+    winPercentage: data['win-percentage'],
+  };
+}
+
+export default function compare(state = {cachedComparisons: {}}, action) {
   switch (action.type) {
     case REQUEST_COMPARISON:
-      return { isFetching: true };
+      return Object.assign({}, state, {isFetching: true, fetchedComparison: null});
     case RECIEVE_COMPARISON:
       return {
         isFetching: false,
-        player1: action.data.players[0],
-        player2: action.data.players[1],
-        matches: action.data.matches,
-        winPercentage: action.data['win-percentage'],
+        fetchedComparison: createComparison(action.data),
+        cachedComparisons: mergeComparisonCache(state, action.data),
       };
     default:
       return state;
