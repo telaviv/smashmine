@@ -17,6 +17,7 @@ function createComparison(data) {
     player2: data.player2,
     matches: data.matches,
     winPercentage: data['win-percentage'],
+    updatedAt: Date.now(),
   };
 }
 

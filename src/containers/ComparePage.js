@@ -85,9 +85,10 @@ CompareForm = reduxForm({
 
 function mapStateToProps(state, ownProps) {
   const { player1, player2 } = ownProps.location.query;
+  debugger;
   return {
     showComparison: Boolean(player1 && player2),
-    compare: state.compare,
+    compare: state.comparison[player1 + '-' + player2],
   };
 }
 
