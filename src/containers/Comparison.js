@@ -35,16 +35,18 @@ class Comparison extends Component {
       <p>{player1.name} has a {this.winPercentage()} chance of beating {player2.name}</p>
       <p>Set Record: {this.setRecord()}</p>
       <table>
-        {matches.map( match => {
-          return (
-            <tr>
-              <td>{match.winner} > {match.loser}</td>
-              <td>{match.score}</td>
-              <td>{match.tournament}</td>
-              <td>{match.date}</td>
-            </tr>
-          )
-        })}
+        <tbody>
+          {matches.map( match => {
+             return (
+               <tr>
+                 <td>{match.winner} > {match.loser}</td>
+                 <td>{match.score}</td>
+                 <td>{match.tournament}</td>
+                 <td>{match.date}</td>
+               </tr>
+             )
+           })}
+        </tbody>
       </table>
       </div>
     )
