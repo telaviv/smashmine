@@ -17,22 +17,26 @@ function receiveComparison(data) {
   };
 }
 
-function generateCompareRedirect(player1, player2) {
+function compareRedirectURL(player1, player2) {
   const uri = URI.expand('/compare/{player1}/{player2}', {player1, player2});
   return uri.toString();
+}
+
+function compareAPIURL(player1, player2) {
+  return URI('http://localhost:3001/compare')
+    .query({player1, player2})
+    .toString();
 }
 
 export function submitCompare(player1, player2) {
   return (dispatch) => {
     dispatch(requestComparison());
 
-    const host = 'http://localhost:3001/compare';
-    const url = host + '?player1=' + encodeURIComponent(player1) + '&player2=' + encodeURIComponent(player2);
-    fetch(url)
+    fetch(compareAPIURL(player1, player2))
       .then(response => response.json())
       .then(json => {
         dispatch(receiveComparison(json));
-        dispatch(push(generateCompareRedirect(json.player1.name, json.player2.name)));
+        dispatch(push(compareRedirectURL(json.player1.name, json.player2.name)));
       });
   };
 }
