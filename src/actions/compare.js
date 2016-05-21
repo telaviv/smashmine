@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch';
 import { push } from 'react-router-redux';
 import URI from 'urijs';
-import URITemplate from 'urijs/src/URITemplate';
+import 'urijs/src/URITemplate';
 
 export const REQUEST_COMPARISON = 'REQUEST_COMPARISON';
 export const RECIEVE_COMPARISON = 'RECIEVE_COMPARISON';
@@ -18,13 +18,13 @@ function receiveComparison(data) {
 }
 
 function compareRedirectURL(player1, player2) {
-  const uri = URI.expand('/compare/{player1}/{player2}', {player1, player2});
+  const uri = URI.expand('/compare/{player1}/{player2}', { player1, player2 });
   return uri.toString();
 }
 
 function compareAPIURL(player1, player2) {
-  return URI('http://localhost:3001/compare')
-    .query({player1, player2})
+  return new URI('http://localhost:3001/compare')
+    .query({ player1, player2 })
     .toString();
 }
 
