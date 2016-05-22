@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 import { If, Then, Else } from 'react-if';
-import { sprintf } from 'sprintf-js';
 import * as CompareActions from '../actions/compare';
 
 
@@ -37,15 +36,20 @@ CompareForm = reduxForm({
 })(CompareForm);
 
 
-function mapStateToProps(state, ownProps) {
-  const {isFetching} = state.compare;
-  return {isFetching};
+function mapStateToProps(state) {
+  return { isFetching: state.compare.isFetching };
 }
 
 
 export class ComparePage extends Component {
+
+  static propTypes = {
+    isFetching: PropTypes.bool.isRequired,
+    children: PropTypes.node,
+  }
+
   render() {
-    const {isFetching} = this.props;
+    const { isFetching } = this.props;
     return (
       <div>
         <CompareForm />
