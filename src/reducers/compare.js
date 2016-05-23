@@ -1,18 +1,8 @@
 import { REQUEST_COMPARISON, RECIEVE_COMPARISON } from '../actions/compare';
-
-function mergeComparisonCache(state, data) {
-  const { cachedComparisons } = state;
-  const { player1, player2 } = data;
-  return Object.assign(
-    {},
-    cachedComparisons,
-    {[player1 + '-' + player2]: createComparison(data)}
-  );
-}
-
+import { sprintf } from 'sprintf-js';
 
 function createComparison(data) {
-  return  {
+  return {
     player1: data.player1,
     player2: data.player2,
     matches: data.matches,
@@ -21,10 +11,20 @@ function createComparison(data) {
   };
 }
 
-export default function compare(state = {cachedComparisons: {}}, action) {
+function mergeComparisonCache(state, data) {
+  const { cachedComparisons } = state;
+  const { player1, player2 } = data;
+  return Object.assign(
+    {},
+    cachedComparisons,
+    { [sprintf('%s-%s', player1, player2)]: createComparison(data) }
+  );
+}
+
+export default function compare(state = { cachedComparisons: {} }, action) {
   switch (action.type) {
     case REQUEST_COMPARISON:
-      return Object.assign({}, state, {isFetching: true, fetchedComparison: null});
+      return Object.assign({}, state, { isFetching: true, fetchedComparison: null });
     case RECIEVE_COMPARISON:
       return {
         isFetching: false,
