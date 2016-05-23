@@ -1,4 +1,4 @@
-import fetch from 'isomorphic-fetch';
+import ifetch from 'isomorphic-fetch';
 import { push } from 'react-router-redux';
 import URI from 'urijs';
 import 'urijs/src/URITemplate';
@@ -28,7 +28,7 @@ function compareAPIURL(player1, player2) {
     .toString();
 }
 
-export function submitCompare(player1, player2) {
+export function submitCompare(player1, player2, fetch=ifetch) {
   return (dispatch) => {
     dispatch(requestComparison());
 
