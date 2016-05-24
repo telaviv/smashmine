@@ -32,7 +32,7 @@ export function submitCompare(player1, player2, fetch=ifetch) {
   return (dispatch) => {
     dispatch(requestComparison());
 
-    fetch(compareAPIURL(player1, player2))
+    return fetch(compareAPIURL(player1, player2))
       .then(response => response.json())
       .then(json => {
         dispatch(receiveComparison(json));
