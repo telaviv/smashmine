@@ -7,11 +7,12 @@ function mockFetch(data) {
 }
 
 describe('submitCompare', () => {
+  const p1 = 'p1';
+  const p2 = 'p2';
+
   it('immediately dispatches a request comparison', () => {
     const fetch = mockFetch();
     const dispatch = spy();
-    const p1 = 'p1';
-    const p2 = 'p2';
 
     submitCompare(p1, p2, fetch)(dispatch);
 
@@ -22,8 +23,6 @@ describe('submitCompare', () => {
   it('fetches from the api', () => {
     const fetch = mockFetch();
     const dispatch = spy();
-    const p1 = 'p1';
-    const p2 = 'p2';
 
     submitCompare(p1, p2, fetch)(dispatch);
 
@@ -33,8 +32,6 @@ describe('submitCompare', () => {
 
   it('dispatches RECIEVE_COMPARISON on success', () => {
     const dispatch = spy();
-    const p1 = 'p1';
-    const p2 = 'p2';
     const data = {player1: {name: p1}, player2: {name: p2}};
     const fetch = mockFetch(data);
 
@@ -46,8 +43,6 @@ describe('submitCompare', () => {
 
   it('pushes to canonical urls.', () => {
     const dispatch = spy();
-    const p1 = 'p1';
-    const p2 = 'p2';
     const data = {player1: {name: p1}, player2: {name: p2}};
     const fetch = mockFetch(data);
 
