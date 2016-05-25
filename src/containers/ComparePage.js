@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React, { Component, PropTypes } from 'react';
 import { If, Then, Else } from 'react-if';
-import CompareForm from '../components/CompareForm';
+import CompareForm from '../containers/CompareForm';
 
 
 function mapStateToProps(state) {
