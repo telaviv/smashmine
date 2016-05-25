@@ -1,19 +1,16 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
-import * as CompareActions from '../actions/compare';
 
-
-class CompareForm extends Component {
+export class CompareForm extends Component {
   static propTypes = {
     fields: PropTypes.object.isRequired,
-    dispatch: PropTypes.func.isRequired,
+    submitCompare: PropTypes.func.isRequired,
   }
 
   submit(e) {
     e.preventDefault();
-    const { fields: { player1, player2 }, dispatch } = this.props;
-    const action = CompareActions.submitCompare(player1.value, player2.value);
-    dispatch(action);
+    const { fields: { player1, player2 }, submitCompare } = this.props;
+    submitCompare(player1.value, player2.value);
   }
 
   render() {
