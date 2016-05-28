@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import { reduxForm } from 'redux-form';
+import { reduxForm, Field } from 'redux-form';
+
 
 export class CompareForm extends Component {
   static propTypes = {
@@ -7,22 +8,45 @@ export class CompareForm extends Component {
     submitCompare: PropTypes.func.isRequired,
   }
 
-  submit(e) {
-    e.preventDefault();
-    const { fields: { player1, player2 }, submitCompare } = this.props;
-    submitCompare(player1.value, player2.value);
+  submit(data) {
+    const { submitCompare } = this.props
+    const { player1, player2 } = data;
+    return submitCompare(player1, player2);
+  }
+
+  playerField(placeholder) {
+    return (player) => (
+      <div>
+        <input type="text" { ...{ placeholder, ...player } } />
+      </div>
+    );
   }
 
   render() {
-    const { fields: { player1, player2 } } = this.props;
+    const { handleSubmit } = this.props;
     return (
-      <form name="compare" onSubmit={this.submit.bind(this)} >
-        <input className="player1" type="text" placeholder="Shaky" {...player1} />
-        <input className="player2" type="text" placeholder="Trevonte" {...player2} />
+      <form name="compare" onSubmit={handleSubmit(this.submit.bind(this))} >
+        <Field name="player1" component={this.playerField('Shaky')} />
+        <Field name="player2" component={this.playerField('Trevonte')} />
         <button type="submit">Submit</button>
       </form>
     );
   }
+}
+
+function isEmpty(value) {
+  return value === undefined || value === null || value === '';
+}
+
+function validate(values) {
+  const errors = {};
+  if (isEmpty(values.player1)) {
+    errors.player1 = 'Required';
+  }
+  if (isEmpty(values.player2)) {
+    errors.player2 = 'Required';
+  }
+  return errors;
 }
 
 export default reduxForm({
