@@ -2,8 +2,15 @@ import { expect } from 'chai';
 import { match, stub, spy, useFakeTimers } from 'sinon';
 import { submitCompare, REQUEST_COMPARISON, RECIEVE_COMPARISON } from '../../src/actions/compare';
 
-function mockFetch(data) {
-  return stub().returns(Promise.resolve({json: () => data}));
+function mockFetch(data, status=200) {
+  return stub().returns(Promise.resolve(response(data, status)));
+}
+
+function response(data, status) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: {'Content-type': 'application/json'},
+  });
 }
 
 describe('submitCompare', () => {
