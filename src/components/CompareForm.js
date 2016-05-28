@@ -18,6 +18,9 @@ export class CompareForm extends Component {
     return (player) => (
       <div>
         <input type="text" { ...{ placeholder, ...player } } />
+        {player.touched &&
+         player.error &&
+         <span className="error">{player.error}</span>}
       </div>
     );
   }
