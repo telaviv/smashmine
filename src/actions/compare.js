@@ -28,15 +28,31 @@ function compareAPIURL(player1, player2) {
     .toString();
 }
 
+function handleErrors(response) {
+  if (response.ok) {
+    return response;
+  } else {
+    return response.json()
+      .then(err => { throw err;})
+      .catch((err) => {
+        if (err instanceof Error) {
+          throw { '_error': "Something wen't wrong please try again later" };
+        }
+        throw err;
+      });
+  }
+}
+
 export function submitCompare(player1, player2, fetch=ifetch) {
   return (dispatch) => {
     dispatch(requestComparison());
 
     return fetch(compareAPIURL(player1, player2))
+      .then(handleErrors)
       .then(response => response.json())
       .then(json => {
         dispatch(receiveComparison(json));
         dispatch(push(compareRedirectURL(json.player1.name, json.player2.name)));
-      });
+      })
   };
 }
