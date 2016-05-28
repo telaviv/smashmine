@@ -4,12 +4,12 @@ import { reduxForm, Field } from 'redux-form';
 
 export class CompareForm extends Component {
   static propTypes = {
-    fields: PropTypes.object.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
     submitCompare: PropTypes.func.isRequired,
   }
 
   submit(data) {
-    const { submitCompare } = this.props
+    const { submitCompare } = this.props;
     const { player1, player2 } = data;
     return submitCompare(player1, player2);
   }
@@ -51,5 +51,5 @@ function validate(values) {
 
 export default reduxForm({
   form: 'compare',
-  fields: ['player1', 'player2'],
+  validate,
 })(CompareForm);

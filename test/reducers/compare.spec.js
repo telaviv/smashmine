@@ -6,7 +6,7 @@ import { REQUEST_COMPARISON, RECIEVE_COMPARISON } from '../../src/actions/compar
 chai.use(shallowDeepEqual);
 
 describe('reducers', () => {
-  describe('counter', () => {
+  describe('compare', () => {
     it('handles initial state', () => {
       expect(compare(undefined, {})).to.deep.equal({ cachedComparisons: {} });
     });

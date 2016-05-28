@@ -11,13 +11,13 @@ function createComparison(data) {
   };
 }
 
-function mergeComparisonCache(state, data) {
+function mergeComparisonCache(state, data, comparison) {
   const { cachedComparisons } = state;
   const { player1, player2 } = data;
   return Object.assign(
     {},
     cachedComparisons,
-    { [sprintf('%s-%s', player1, player2)]: createComparison(data) }
+    { [sprintf('%s-%s', player1, player2)]: comparison }
   );
 }
 
@@ -25,12 +25,14 @@ export default function compare(state = { cachedComparisons: {} }, action) {
   switch (action.type) {
     case REQUEST_COMPARISON:
       return Object.assign({}, state, { isFetching: true, fetchedComparison: null });
-    case RECIEVE_COMPARISON:
+    case RECIEVE_COMPARISON: {
+      const comp = createComparison(action.data);
       return {
         isFetching: false,
-        fetchedComparison: createComparison(action.data),
-        cachedComparisons: mergeComparisonCache(state, action.data),
+        fetchedComparison: comp,
+        cachedComparisons: mergeComparisonCache(state, action.data, comp),
       };
+    }
     default:
       return state;
   }
