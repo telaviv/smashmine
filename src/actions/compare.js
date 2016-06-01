@@ -29,6 +29,15 @@ function compareAPIURL(player1, player2) {
     .toString();
 }
 
+function normalizeServerErrors(error) {
+  const errors = error.errors;
+  const normalized = {};
+  for (const [key, value] of Object.entries(errors)) {
+    normalized[key] = value.msg;
+  }
+  return normalized;
+}
+
 function handleErrors(response) {
   if (response.ok) {
     return response;
@@ -36,7 +45,10 @@ function handleErrors(response) {
 
   return response
     .json()
-    .then(err => { throw new SubmissionError(err); })
+    .then(err => {
+      const errors = normalizeServerErrors(err);
+      throw new SubmissionError(errors);
+    })
     .catch((err) => {
       if (!(err instanceof SubmissionError)) {
         throw new SubmissionError(

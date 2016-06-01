@@ -67,6 +67,7 @@
     "webpack-hot-middleware": "^2.10.0"
   },
   "dependencies": {
+    "babel-preset-es2017": "^1.4.0",
     "eslint-config-airbnb": "^9.0.1",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",

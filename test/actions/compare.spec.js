@@ -71,12 +71,17 @@ describe('submitCompare', () => {
 
   it('returns a catchable object with simple errors', () => {
     const dispatch = spy();
-    const error = 'no player with that name';
-    const data = { player1: error };
+    const error1 = 'no player with that name';
+    const error2 = 'something else wrong';
+    const data = { errors: {
+      player1: { msg: error1 },
+      player2: { msg: error2 },
+    } };
     const fetch = mockFetch(data, 400); // bad request
 
     return submitCompare(p1, p2, fetch)(dispatch).catch((errors) => {
-      expect(errors.errors).to.deep.equal(data);
+      expect(errors.errors).to.deep.equal(
+        { player1: error1, player2: error2 });
     });
   });
 
