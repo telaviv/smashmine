@@ -1,6 +1,16 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm, Field } from 'redux-form';
 
+function PlayerField(player) {
+  return (
+    <div>
+      <input type="text" { ...{...player } } />
+      {player.touched &&
+       player.error &&
+       <span className="error">{player.error}</span>}
+    </div>
+  );
+}
 
 export class CompareForm extends Component {
   static propTypes = {
@@ -14,23 +24,12 @@ export class CompareForm extends Component {
     return submitCompare(player1, player2);
   }
 
-  playerField(placeholder) {
-    return (player) => (
-      <div>
-        <input type="text" { ...{ placeholder, ...player } } />
-        {player.touched &&
-         player.error &&
-         <span className="error">{player.error}</span>}
-      </div>
-    );
-  }
-
   render() {
     const { handleSubmit } = this.props;
     return (
       <form name="compare" onSubmit={handleSubmit(this.submit.bind(this))} >
-        <Field name="player1" component={this.playerField('Shaky')} />
-        <Field name="player2" component={this.playerField('Trevonte')} />
+        <Field name="player1" placeholder="Shaky" component={PlayerField} />
+        <Field name="player2" placeholder="Trevonte" component={PlayerField} />
         <button type="submit">Submit</button>
       </form>
     );
