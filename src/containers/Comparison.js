@@ -6,7 +6,7 @@ import Comparison from '../components/Comparison';
 
 class ComparisonLoader extends Component {
 
-  propTypes = {
+  static propTypes = {
     dispatch: PropTypes.func.isRequired,
     p1name: PropTypes.string.isRequired,
     p2name: PropTypes.string.isRequired,
@@ -43,5 +43,6 @@ function mapStateToProps(state, ownProps) {
     comparison: fetchedComparison,
   };
 }
+
 
 export default connect(mapStateToProps)(ComparisonLoader);
