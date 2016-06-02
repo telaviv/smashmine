@@ -22,76 +22,80 @@ function mockFetchFromRawBody(body, status = 200) {
     Promise.resolve(responseFromRawBody(body, status)));
 }
 
-describe('submitCompare', () => {
-  const p1 = 'p1';
-  const p2 = 'p2';
+describe('actions', () => {
+  describe('compare', () => {
+    describe('submitCompare', () => {
+      const p1 = 'p1';
+      const p2 = 'p2';
 
-  it('immediately dispatches a request comparison', () => {
-    const fetch = mockFetch();
-    const dispatch = spy();
+      it('immediately dispatches a request comparison', () => {
+        const fetch = mockFetch();
+        const dispatch = spy();
 
-    submitCompare(p1, p2, fetch)(dispatch);
+        submitCompare(p1, p2, fetch)(dispatch);
 
-    expect(dispatch).to.have.been.calledWith({ type: REQUEST_COMPARISON });
-  });
+        expect(dispatch).to.have.been.calledWith({ type: REQUEST_COMPARISON });
+      });
 
 
-  it('fetches from the api', () => {
-    const fetch = mockFetch();
-    const dispatch = spy();
+      it('fetches from the api', () => {
+        const fetch = mockFetch();
+        const dispatch = spy();
 
-    submitCompare(p1, p2, fetch)(dispatch);
+        submitCompare(p1, p2, fetch)(dispatch);
 
-    expect(fetch).to.have.been.calledWith(
-      'http://localhost:3001/compare?player1=p1&player2=p2');
-  });
+        expect(fetch).to.have.been.calledWith(
+          'http://localhost:3001/compare?player1=p1&player2=p2');
+      });
 
-  it('dispatches RECIEVE_COMPARISON on success', () => {
-    const dispatch = spy();
-    const data = { player1: { name: p1 }, player2: { name: p2 } };
-    const fetch = mockFetch(data);
+      it('dispatches RECIEVE_COMPARISON on success', () => {
+        const dispatch = spy();
+        const data = { player1: { name: p1 }, player2: { name: p2 } };
+        const fetch = mockFetch(data);
 
-    return submitCompare(p1, p2, fetch)(dispatch).then(() => {
-      expect(dispatch).to.have.been.calledWith(
-        { type: RECIEVE_COMPARISON, data });
-    });
-  });
+        return submitCompare(p1, p2, fetch)(dispatch).then(() => {
+          expect(dispatch).to.have.been.calledWith(
+            { type: RECIEVE_COMPARISON, data });
+        });
+      });
 
-  it('pushes to canonical urls.', () => {
-    const dispatch = spy();
-    const data = { player1: { name: p1 }, player2: { name: p2 } };
-    const fetch = mockFetch(data);
+      it('pushes to canonical urls.', () => {
+        const dispatch = spy();
+        const data = { player1: { name: p1 }, player2: { name: p2 } };
+        const fetch = mockFetch(data);
 
-    return submitCompare(p1, p2, fetch)(dispatch).then(() => {
-      expect(dispatch).to.have.been.calledWith(
-        { type: match.any,
-          payload: { method: 'push', args: ['/compare/p1/p2'] } });
-    });
-  });
+        return submitCompare(p1, p2, fetch)(dispatch).then(() => {
+          expect(dispatch).to.have.been.calledWith(
+            { type: match.any,
+              payload: { method: 'push', args: ['/compare/p1/p2'] } });
+        });
+      });
 
-  it('returns a catchable object with simple errors', () => {
-    const dispatch = spy();
-    const error1 = 'no player with that name';
-    const error2 = 'something else wrong';
-    const data = { errors: {
-      player1: { msg: error1 },
-      player2: { msg: error2 },
-    } };
-    const fetch = mockFetch(data, 400); // bad request
+      it('returns a catchable object with simple errors', () => {
+        const dispatch = spy();
+        const error1 = 'no player with that name';
+        const error2 = 'something else wrong';
+        const data = { errors: {
+          player1: { msg: error1 },
+          player2: { msg: error2 },
+        } };
+        const fetch = mockFetch(data, 400); // bad request
 
-    return submitCompare(p1, p2, fetch)(dispatch).catch((errors) => {
-      expect(errors.errors).to.deep.equal(
-        { player1: error1, player2: error2 });
-    });
-  });
+        return submitCompare(p1, p2, fetch)(dispatch).catch((errors) => {
+          expect(errors.errors).to.deep.equal(
+            { player1: error1, player2: error2 });
+        });
+      });
 
-  it('returns a default object when no parseable error occurs', () => {
-    const dispatch = spy();
-    const body = '<html><body><p>Error</p></body></html>';
-    const fetch = mockFetchFromRawBody(body, 400); // bad request
+      it('returns a default object when no parseable error occurs', () => {
+        const dispatch = spy();
+        const body = '<html><body><p>Error</p></body></html>';
+        const fetch = mockFetchFromRawBody(body, 400); // bad request
 
-    return submitCompare(p1, p2, fetch)(dispatch).catch((errors) => {
-      expect(errors.errors).to.have.keys('_error');
+        return submitCompare(p1, p2, fetch)(dispatch).catch((errors) => {
+          expect(errors.errors).to.have.keys('_error');
+        });
+      });
     });
   });
 });
