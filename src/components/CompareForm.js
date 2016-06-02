@@ -5,7 +5,7 @@ import { If, Then } from 'react-if';
 function PlayerField(player) {
   return (
     <div>
-      <input type="text" { ...{...player } } />
+      <input type="text" { ...player } />
       <If condition={player.touched && player.error} >
         <Then><span className="error">{player.error}</span></Then>
       </If>
