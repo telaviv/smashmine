@@ -1,13 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm, Field } from 'redux-form';
+import { If, Then } from 'react-if';
 
 function PlayerField(player) {
   return (
     <div>
       <input type="text" { ...{...player } } />
-      {player.touched &&
-       player.error &&
-       <span className="error">{player.error}</span>}
+      <If condition={player.touched && player.error} >
+        <Then><span className="error">{player.error}</span></Then>
+      </If>
     </div>
   );
 }
