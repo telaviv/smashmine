@@ -8,7 +8,6 @@ function mapStateToProps(state) {
   return { isFetching: state.compare.isFetching };
 }
 
-
 export class ComparePage extends Component {
 
   static propTypes = {

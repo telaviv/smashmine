@@ -8,7 +8,10 @@ chai.use(shallowDeepEqual);
 describe('reducers', () => {
   describe('compare', () => {
     it('handles initial state', () => {
-      expect(compare(undefined, {})).to.deep.equal({ cachedComparisons: {} });
+      expect(compare(undefined, {})).to.deep.equal({
+        cachedComparisons: {},
+        isFetching: false,
+      });
     });
 
     it('handles REQUEST_COMPARISON', () => {

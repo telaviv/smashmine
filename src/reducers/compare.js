@@ -21,7 +21,8 @@ function mergeComparisonCache(state, data, comparison) {
   );
 }
 
-export default function compare(state = { cachedComparisons: {} }, action) {
+export default function compare(
+  state = { cachedComparisons: {}, isFetching: false }, action) {
   switch (action.type) {
     case REQUEST_COMPARISON:
       return Object.assign({}, state, { isFetching: true, fetchedComparison: null });
