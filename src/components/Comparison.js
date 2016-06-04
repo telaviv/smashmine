@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { sprintf } from 'sprintf-js';
-import moment from 'moment';
 import PlayerStats from './PlayerStats';
+import Matches from './Matches';
 
 export default class Comparison extends Component {
 
@@ -41,18 +41,7 @@ export default class Comparison extends Component {
         <PlayerStats {...player2} />
         <p>{player1.name} has a {this.winPercentage()} chance of beating {player2.name}</p>
         <p>Set Record: {this.setRecord()}</p>
-        <table>
-          <tbody>
-            {matches.map(match => (
-               <tr>
-                 <td>{match.winner} > {match.loser}</td>
-                 <td>{match.score}</td>
-                 <td>{match.tournament}</td>
-                 <td>{moment(match.time).fromNow()}</td>
-               </tr>
-             ))}
-          </tbody>
-        </table>
+        <Matches matches={matches} />
       </div>
     );
   }
