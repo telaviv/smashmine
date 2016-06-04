@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { sprintf } from 'sprintf-js';
+import moment from 'moment';
 
 export default class Comparison extends Component {
 
@@ -31,6 +32,10 @@ export default class Comparison extends Component {
     return sprintf('%.1f%%', winPercentage * 100);
   }
 
+  timeFromNow(time) {
+    return moment(time).fromNow();
+  }
+
   render() {
     const { player1, player2, matches } = this.props;
     return (
@@ -44,7 +49,7 @@ export default class Comparison extends Component {
                  <td>{match.winner} > {match.loser}</td>
                  <td>{match.score}</td>
                  <td>{match.tournament}</td>
-                 <td>{match.date}</td>
+                 <td>{moment(match.time).fromNow()}</td>
                </tr>
              ))}
           </tbody>

@@ -71,6 +71,7 @@
   "dependencies": {
     "babel-preset-es2017": "^1.4.0",
     "eslint-config-airbnb": "^9.0.1",
+    "moment": "^2.13.0",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
     "react-if": "^2.0.5",
