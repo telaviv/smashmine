@@ -20,7 +20,9 @@
     "prepublish": "npm run clean && npm run build",
     "postinstall": "node node_modules/fbjs-scripts/node/check-dev-engines.js package.json"
   },
-  "pre-commit": [ "check" ],
+  "pre-commit": [
+    "check"
+  ],
   "author": {
     "name": "Shawn Krisman",
     "email": "krisman.shawn@gmail.com",
