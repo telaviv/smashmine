@@ -17,6 +17,7 @@ export class CompareForm extends Component {
   static propTypes = {
     handleSubmit: PropTypes.func.isRequired,
     submitCompare: PropTypes.func.isRequired,
+    error: PropTypes.string,
   }
 
   submit(data) {
@@ -26,11 +27,14 @@ export class CompareForm extends Component {
   }
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, error } = this.props;
     return (
       <form name="compare" onSubmit={handleSubmit(this.submit.bind(this))} >
         <Field name="player1" placeholder="Shaky" component={PlayerField} />
         <Field name="player2" placeholder="Trevonte" component={PlayerField} />
+        <If condition={!!error}>
+          <Then><span className="error">{error}</span></Then>
+        </If>
         <button type="submit">Submit</button>
       </form>
     );

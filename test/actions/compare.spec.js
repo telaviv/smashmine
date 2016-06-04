@@ -22,6 +22,11 @@ function mockFetchFromRawBody(body, status = 200) {
     Promise.resolve(responseFromRawBody(body, status)));
 }
 
+function mockErrorFetch() {
+  return stub().returns(Promise.reject(new TypeError));
+}
+
+
 describe('actions', () => {
   describe('compare', () => {
     describe('submitCompare', () => {
@@ -91,6 +96,15 @@ describe('actions', () => {
         const dispatch = spy();
         const body = '<html><body><p>Error</p></body></html>';
         const fetch = mockFetchFromRawBody(body, 400); // bad request
+
+        return submitCompare(p1, p2, fetch)(dispatch).catch((errors) => {
+          expect(errors.errors).to.have.keys('_error');
+        });
+      });
+
+      it('returns a default object when a fetch error occurs', () => {
+        const dispatch = spy();
+        const fetch = mockErrorFetch();
 
         return submitCompare(p1, p2, fetch)(dispatch).catch((errors) => {
           expect(errors.errors).to.have.keys('_error');

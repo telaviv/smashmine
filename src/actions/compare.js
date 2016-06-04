@@ -1,3 +1,4 @@
+/* eslint no-console: 0 */
 import ifetch from 'isomorphic-fetch';
 import { push } from 'react-router-redux';
 import { SubmissionError } from 'redux-form';
@@ -38,7 +39,7 @@ function normalizeServerErrors(error) {
   return normalized;
 }
 
-function handleErrors(response) {
+function handleServerErrors(response) {
   if (response.ok) {
     return response;
   }
@@ -59,12 +60,24 @@ function handleErrors(response) {
     });
 }
 
+function handleFetchErrors(err) {
+  console.error(err);
+  if (err instanceof TypeError) {
+    throw new SubmissionError(
+      { _error: "Something wen't wrong please try again later" }
+    );
+  } else {
+    throw err;
+  }
+}
+
 export function submitCompare(player1, player2, fetch = ifetch) {
   return (dispatch) => {
     dispatch(requestComparison());
 
     return fetch(compareAPIURL(player1, player2))
-      .then(handleErrors)
+      .catch(handleFetchErrors)
+      .then(handleServerErrors)
       .then(response => response.json())
       .then(json => {
         dispatch(receiveComparison(json));
