@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { sprintf } from 'sprintf-js';
 import moment from 'moment';
+import PlayerStats from './PlayerStats';
 
 export default class Comparison extends Component {
 
@@ -32,14 +33,12 @@ export default class Comparison extends Component {
     return sprintf('%.1f%%', winPercentage * 100);
   }
 
-  timeFromNow(time) {
-    return moment(time).fromNow();
-  }
-
   render() {
     const { player1, player2, matches } = this.props;
     return (
       <div>
+        <PlayerStats {...player1} />
+        <PlayerStats {...player2} />
         <p>{player1.name} has a {this.winPercentage()} chance of beating {player2.name}</p>
         <p>Set Record: {this.setRecord()}</p>
         <table>
