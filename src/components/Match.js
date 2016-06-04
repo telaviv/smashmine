@@ -9,13 +9,12 @@ export default class Match extends Component {
     score: PropTypes.string.isRequired,
     tournament: PropTypes.string.isRequired,
     time: PropTypes.number.isRequired,
-    id: PropTypes.number.isRequired,
   }
 
   render() {
-    const { winner, loser, score, tournament, time, id } = this.props;
+    const { winner, loser, score, tournament, time } = this.props;
     return (
-      <tr key={id}>
+      <tr>
         <td>{winner} > {loser}</td>
         <td>{score}</td>
         <td>{tournament}</td>

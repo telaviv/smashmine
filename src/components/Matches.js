@@ -13,7 +13,7 @@ export default class Matches extends Component {
       <table>
         <tbody>
           {matches.map(match => (
-             <Match {...match} />
+             <Match key={match.id} {...match} />
            ))}
         </tbody>
       </table>
