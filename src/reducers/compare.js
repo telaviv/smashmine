@@ -1,4 +1,6 @@
-import { REQUEST_COMPARISON, RECIEVE_COMPARISON } from '../actions/compare';
+import { REQUEST_COMPARISON,
+         RECIEVE_COMPARISON,
+         COMPARISON_FAILED } from '../actions/compare';
 import { sprintf } from 'sprintf-js';
 
 function createComparison(data) {
@@ -32,6 +34,12 @@ export default function compare(
         isFetching: false,
         fetchedComparison: comp,
         cachedComparisons: mergeComparisonCache(state, action.data, comp),
+      };
+    }
+    case COMPARISON_FAILED: {
+      return {
+        isFetching: false,
+        cachedComparisons: state.cachedComparisons,
       };
     }
     default:
