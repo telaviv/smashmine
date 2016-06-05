@@ -8,6 +8,7 @@ const {
   NotFoundPage,
   ComparePage,
   Comparison,
+  PlayerPage,
 } = containers;
 
 
@@ -16,6 +17,7 @@ export default (
     <Route path="/compare" component={ComparePage} >
       <Route path=":player1/:player2" component={Comparison} />
     </Route>
+    <Route path="/player/:player" component={PlayerPage} />
     <Route path="*" component={NotFoundPage} />
   </Route>
 );

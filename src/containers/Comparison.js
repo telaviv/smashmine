@@ -1,8 +1,7 @@
-import { connect } from 'react-redux';
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import * as CompareActions from '../actions/compare';
 import Comparison from '../components/Comparison';
-
 
 class ComparisonLoader extends Component {
 
