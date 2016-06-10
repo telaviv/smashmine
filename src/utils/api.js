@@ -1,5 +1,5 @@
 /* eslint no-console: 0 */
-import ifetch from 'isomorphic-fetch';
+import isoFetch from 'isomorphic-fetch';
 import URI from 'urijs';
 import { SubmissionError } from 'redux-form';
 
@@ -52,7 +52,7 @@ function createURL(path, query) {
     .toString();
 }
 
-export default function fetch(path, query) {
+export function fetch(path, query, ifetch = isoFetch) {
   return ifetch(createURL(path, query))
     .catch(handleFetchErrors)
     .then(handleServerErrors)
