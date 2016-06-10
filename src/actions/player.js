@@ -1,6 +1,6 @@
 /* eslint no-console: 0 */
 import { push } from 'react-router-redux';
-import fetch from '../utils/api';
+import { fetch as apiFetch } from '../utils/api';
 import URI from 'urijs';
 import 'urijs/src/URITemplate';
 
@@ -24,7 +24,7 @@ function playerInfoURL(player) {
   return URI.expand('/player/{player}', { player }).toString();
 }
 
-export function fetchPlayerInfo(player) {
+export function fetchPlayerInfo(player, fetch = apiFetch) {
   return (dispatch) => {
     dispatch(requestPlayerInfo());
 
