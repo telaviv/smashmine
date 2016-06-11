@@ -37,6 +37,7 @@ export function fetchPlayerInfo(player, fetch = apiFetch) {
       })
       .catch(err => {
         dispatch({ type: PLAYER_INFO_REQUEST_FAILED });
+        dispatch(push('/not-found'));
         throw err;
       });
   };
