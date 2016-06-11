@@ -1,5 +1,5 @@
 /* eslint no-console: 0 */
-import apiFetch from '../utils/api';
+import { fetch as apiFetch } from '../utils/api';
 import { push } from 'react-router-redux';
 import URI from 'urijs';
 import 'urijs/src/URITemplate';
