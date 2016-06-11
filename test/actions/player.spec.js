@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { stub, spy } from 'sinon';
+import { match, stub, spy } from 'sinon';
 import { SubmissionError } from 'redux-form';
 import { fetchPlayerInfo,
          REQUEST_PLAYER_INFO,
@@ -36,6 +36,22 @@ describe('actions', () => {
           expect(dispatch).to.have.been.calledWith(
             { type: PLAYER_INFO_REQUEST_FAILED }
           );
+        });
+      });
+
+      it('redirects if the player name differs', () => {
+        const data = { player: { name: 'p2' } };
+        const fetch = mockFetch(data);
+        const dispatch = spy();
+
+        return fetchPlayerInfo(player, fetch)(dispatch).then(() => {
+          expect(dispatch).to.have.been.calledWith({
+            type: match.any,
+            payload: {
+              method: 'push',
+              args: ['/player/p2'],
+            },
+          });
         });
       });
     });
