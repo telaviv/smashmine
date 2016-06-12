@@ -1,7 +1,8 @@
 import { expect } from 'chai';
 import player from '../../src/reducers/player';
 import { REQUEST_PLAYER_INFO,
-         RECIEVE_PLAYER_INFO } from '../../src/actions/player';
+         RECIEVE_PLAYER_INFO,
+         PLAYER_INFO_REQUEST_FAILED } from '../../src/actions/player';
 
 describe('reducers', () => {
   describe('player', () => {
@@ -21,6 +22,13 @@ describe('reducers', () => {
         undefined,
         { type: RECIEVE_PLAYER_INFO, data },
       )).to.deep.equal({ isFetching: false, ...data });
+    });
+
+    it('handles PLAYER_INFO_REQUEST_FAILED', () => {
+      expect(player(
+        { isFetching: true },
+        { type: PLAYER_INFO_REQUEST_FAILED },
+      )).to.deep.equal({ isFetching: false });
     });
   });
 });
