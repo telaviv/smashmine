@@ -33,7 +33,7 @@ describe('reducers', () => {
         player1: 'sean',
         player2: 'shaky',
         matches: [],
-        'win-percentage': 0.04,
+        winPercentage: 0.04,
       };
 
       it('merges the comparison into the cache', () => {

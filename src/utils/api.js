@@ -79,5 +79,6 @@ export function fetch(path, query, ifetch = isoFetch) {
   return ifetch(createURL(path, query))
     .catch(handleFetchErrors)
     .then(handleServerErrors)
-    .then(response => response.json());
+    .then(response => response.json())
+    .then(normalizeKeys);
 }

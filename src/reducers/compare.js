@@ -4,13 +4,7 @@ import { REQUEST_COMPARISON,
 import { sprintf } from 'sprintf-js';
 
 function createComparison(data) {
-  return {
-    player1: data.player1,
-    player2: data.player2,
-    matches: data.matches,
-    winPercentage: data['win-percentage'],
-    updatedAt: Date.now(),
-  };
+  return { updatedAt: Date.now(), ...data };
 }
 
 function mergeComparisonCache(state, data, comparison) {
