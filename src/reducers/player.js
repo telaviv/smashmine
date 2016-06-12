@@ -1,19 +1,27 @@
 import { REQUEST_PLAYER_INFO,
          RECIEVE_PLAYER_INFO } from '../../src/actions/player';
 
-function normalizeMatchKeys(match) {
-  return {
-    opponent: match.opponent,
-    won: match.won,
-    winPercentage: match['win-percentage'],
-    time: match.time,
-    tournament: match.tournament,
-    startRating: match.start_rating,
-    endRating: match.end_rating,
-    opponentRating: match.opponent_rating,
-    id: match.id,
-    score: match.score,
-  };
+function capitalizeFirstCharacter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function normalizeKey(key) {
+  const parts = key.split(/-|_/);
+  const out = [parts[0], ...(parts.splice(1).map(capitalizeFirstCharacter))];
+  return out.join('');
+}
+
+function normalizeKeys(obj) {
+  if (Array.isArray(obj)) {
+    return obj.map(normalizeKeys);
+  } else if (typeof obj === 'object') {
+    const out = {};
+    for (const [key, value] of Object.entries(obj)) {
+      out[normalizeKey(key)] = value;
+    }
+    return out;
+  }
+  return obj;
 }
 
 export default function player(state = { isFetching: false }, action) {
@@ -24,7 +32,7 @@ export default function player(state = { isFetching: false }, action) {
       return {
         isFetching: false,
         player: action.data.player,
-        matches: action.data.matches.map((m) => normalizeMatchKeys(m)),
+        matches: action.data.matches.map(normalizeKeys),
       };
     }
     default:
