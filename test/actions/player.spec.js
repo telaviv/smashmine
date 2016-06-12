@@ -63,7 +63,7 @@ describe('actions', () => {
           expect(dispatch).to.have.been.calledWith({
             type: match.any,
             payload: {
-              method: 'push',
+              method: 'replace',
               args: ['/not-found'],
             },
           });
