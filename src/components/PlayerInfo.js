@@ -21,7 +21,7 @@ export default class PlayerInfo extends Component {
         </div>
         <div>
           {matches.map(match => (
-             <PlayerMatch key={match.id} {...match} />
+             <div key={match.id}><PlayerMatch {...match} /></div>
            ))}
         </div>
       </div>

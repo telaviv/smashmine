@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import PlayerLink from './PlayerLink';
 
 export default class PlayerMatch extends Component {
 
@@ -16,7 +17,7 @@ export default class PlayerMatch extends Component {
   render() {
     const { opponent } = this.props;
     return (
-      <p>{opponent}</p>
+      <PlayerLink name={opponent} />
     );
   }
 }
