@@ -1,5 +1,5 @@
 /* eslint no-console: 0 */
-import { push, replace } from 'react-router-redux';
+import { replace } from 'react-router-redux';
 import { fetch as apiFetch } from '../utils/api';
 import URI from 'urijs';
 import 'urijs/src/URITemplate';
@@ -31,7 +31,7 @@ export function fetchPlayerInfo(player, fetch = apiFetch) {
       .then(json => {
         dispatch(receivePlayerInfo(json));
         if (json.player.name !== player) {
-          dispatch(push(playerInfoURL(json.player.name)));
+          dispatch(replace(playerInfoURL(json.player.name)));
         }
       })
       .catch(err => {
