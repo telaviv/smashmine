@@ -21,7 +21,7 @@ export function normalizeKeys(obj) {
   } else if (typeof obj === 'object') {
     const out = {};
     for (const [key, value] of Object.entries(obj)) {
-      out[normalizeKey(key)] = value;
+      out[normalizeKey(key)] = normalizeKeys(value);
     }
     return out;
   }
