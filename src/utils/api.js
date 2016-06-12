@@ -5,6 +5,29 @@ import { SubmissionError } from 'redux-form';
 
 const BASE_URL = 'http://localhost:3001/';
 
+function capitalizeFirstCharacter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function normalizeKey(key) {
+  const parts = key.split(/-|_/);
+  const out = [parts[0], ...(parts.splice(1).map(capitalizeFirstCharacter))];
+  return out.join('');
+}
+
+export function normalizeKeys(obj) {
+  if (Array.isArray(obj)) {
+    return obj.map(normalizeKeys);
+  } else if (typeof obj === 'object') {
+    const out = {};
+    for (const [key, value] of Object.entries(obj)) {
+      out[normalizeKey(key)] = value;
+    }
+    return out;
+  }
+  return obj;
+}
+
 function normalizeServerErrors(error) {
   const errors = error.errors;
   const normalized = {};
