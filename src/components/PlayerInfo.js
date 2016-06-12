@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import PlayerMatch from './PlayerMatch';
 
 export default class PlayerInfo extends Component {
 
@@ -8,9 +9,22 @@ export default class PlayerInfo extends Component {
   }
 
   render() {
-    const { player: { name } } = this.props;
+    const { player: { name, rating, stddev }, matches } = this.props;
     return (
-      <h1>{name}</h1>
+      <div>
+        <div>
+          <h1>{name}</h1>
+          <div>
+            <p>rating: {rating}</p>
+            <p>stddev: {stddev}</p>
+          </div>
+        </div>
+        <div>
+          {matches.map(match => (
+             <PlayerMatch key={match.id} {...match} />
+           ))}
+        </div>
+      </div>
     );
   }
 }
