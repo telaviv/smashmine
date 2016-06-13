@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { sprintf } from 'sprintf-js';
+import PlayerLink from './PlayerLink';
 
 export default class PlayerStats extends Component {
 
@@ -14,7 +15,7 @@ export default class PlayerStats extends Component {
     return (
       <div>
         <p>
-          {name}
+          <PlayerLink name={name} />
           <span> rating: {sprintf('{%.0f, %.0f}', rating, stddev)}</span>
         </p>
       </div>
