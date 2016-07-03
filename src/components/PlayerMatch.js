@@ -1,10 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import PlayerLink from './PlayerLink';
+import TournamentLink from './TournamentLink';
 import { sprintf } from 'sprintf-js';
 
 export default class PlayerMatch extends Component {
 
   static propTypes = {
+    tournament: PropTypes.object.isRequired,
     opponent: PropTypes.string.isRequired,
     won: PropTypes.bool.isRequired,
     winPercentage: PropTypes.number.isRequired,
@@ -26,12 +28,13 @@ export default class PlayerMatch extends Component {
   }
 
   render() {
-    const { opponent } = this.props;
+    const { opponent, tournament } = this.props;
     return (
-      <span>
-        <PlayerLink name={opponent} />
-        {sprintf(' %s %.1f', this.winMessage(), this.ratingDiff())}
-      </span>
+      <tr>
+        <td><PlayerLink name={opponent} /></td>
+        <td><TournamentLink {...tournament} /></td>
+        <td>{sprintf(' %s %.1f', this.winMessage(), this.ratingDiff())}</td>
+      </tr>
     );
   }
 }

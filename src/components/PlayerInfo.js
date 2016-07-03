@@ -20,9 +20,13 @@ export default class PlayerInfo extends Component {
           </div>
         </div>
         <div>
-          {matches.map(match => (
-             <div key={match.id}><PlayerMatch {...match} /></div>
-           ))}
+          <table>
+            <tbody>
+              {matches.map(match => (
+                 <PlayerMatch {...match} key={match.id} />
+               ))}
+            </tbody>
+          </table>
         </div>
       </div>
     );

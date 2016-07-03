@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import moment from 'moment';
+import PlayerLink from './PlayerLink';
 import TournamentLink from './TournamentLink';
 
 export default class Match extends Component {
@@ -16,7 +17,7 @@ export default class Match extends Component {
     const { winner, loser, score, tournament, time } = this.props;
     return (
       <tr>
-        <td>{winner} > {loser}</td>
+        <td><PlayerLink name={winner} /> > <PlayerLink name={loser} /></td>
         <td>{score}</td>
         <td><TournamentLink {...tournament} /></td>
         <td>{moment(time).fromNow()}</td>
