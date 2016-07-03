@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import PlayerLink from './PlayerLink';
+import { sprintf } from 'sprintf-js';
 
 export default class PlayerMatch extends Component {
 
@@ -14,10 +15,23 @@ export default class PlayerMatch extends Component {
     score: PropTypes.string.isRequired,
   }
 
+  winMessage() {
+    const { won } = this.props;
+    return won ? 'Win' : 'Loss';
+  }
+
+  ratingDiff() {
+    const { startRating, endRating } = this.props;
+    return endRating.rating - startRating.rating;
+  }
+
   render() {
     const { opponent } = this.props;
     return (
-      <PlayerLink name={opponent} />
+      <span>
+        <PlayerLink name={opponent} />
+        {sprintf(' %s %.1f', this.winMessage(), this.ratingDiff())}
+      </span>
     );
   }
 }

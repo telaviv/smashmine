@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import moment from 'moment';
+import TournamentLink from './TournamentLink';
 
 export default class Match extends Component {
 
@@ -7,7 +8,7 @@ export default class Match extends Component {
     winner: PropTypes.string.isRequired,
     loser: PropTypes.string.isRequired,
     score: PropTypes.string.isRequired,
-    tournament: PropTypes.string.isRequired,
+    tournament: PropTypes.object.isRequired,
     time: PropTypes.number.isRequired,
   }
 
@@ -17,7 +18,7 @@ export default class Match extends Component {
       <tr>
         <td>{winner} > {loser}</td>
         <td>{score}</td>
-        <td>{tournament}</td>
+        <td><TournamentLink {...tournament} /></td>
         <td>{moment(time).fromNow()}</td>
       </tr>
     );
