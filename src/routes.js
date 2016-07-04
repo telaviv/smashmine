@@ -9,6 +9,7 @@ const {
   ComparePage,
   Comparison,
   PlayerPage,
+  TournamentPage,
 } = containers;
 
 
@@ -18,6 +19,7 @@ export default (
       <Route path=":player1/:player2" component={Comparison} />
     </Route>
     <Route path="/player/:player" component={PlayerPage} />
+    <Route path="/tournament/:id" component={TournamentPage} />
     <Route path="*" component={NotFoundPage} />
   </Route>
 );
