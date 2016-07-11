@@ -1,10 +1,17 @@
 import React, { Component, PropTypes } from 'react';
+import { fetchTournamentInfo } from '../actions/tournament';
 import { connect } from 'react-redux';
 
 class TournamentPage extends Component {
 
   static propTypes = {
     id: PropTypes.string.isRequired,
+    dispatch: PropTypes.func.isRequired,
+  }
+
+  componentWillMount() {
+    const { dispatch, id } = this.props;
+    dispatch(fetchTournamentInfo(id));
   }
 
   render() {
