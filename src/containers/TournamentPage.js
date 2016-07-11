@@ -7,6 +7,8 @@ class TournamentPage extends Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
     dispatch: PropTypes.func.isRequired,
+    showLoader: PropTypes.bool.isRequired,
+    tournamentInfo: PropTypes.object.isRequired,
   }
 
   componentWillMount() {
@@ -15,16 +17,27 @@ class TournamentPage extends Component {
   }
 
   render() {
-    const { id } = this.props;
+    const { showLoader, tournamentInfo } = this.props;
+    let component;
+    if (showLoader) {
+      component = <p>Loading ... </p>;
+    } else {
+      component = <h1>{tournamentInfo.tournament.title}</h1>;
+    }
     return (
-      <h1>{id}</h1>
+      <div>
+        {component}
+      </div>
     );
   }
 }
 
 function mapStateToProps(state, ownProps) {
+  const { tournament, matches } = state.tournament;
   return {
     id: ownProps.params.id,
+    showLoader: !tournament,
+    tournamentInfo: { tournament, matches },
   };
 }
 
