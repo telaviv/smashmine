@@ -3,7 +3,7 @@ const webpack = require('webpack');
 
 
 module.exports = {
-  devtool: 'source-map',
+  devtool: '#source-maps',
   entry: './src/index',
   output: {
     path: path.join(__dirname, 'dist'),
@@ -11,7 +11,6 @@ module.exports = {
     publicPath: '/static/',
   },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
@@ -25,12 +24,12 @@ module.exports = {
     }),
   ],
   resolve: {
-    extensions: ['', '.js'],
+    extensions: ['.js'],
   },
   module: {
     loaders: [{
       test: /\.js$/,
-      loaders: ['babel'],
+      loaders: ['babel-loader'],
       exclude: /node_modules/,
     }],
   },

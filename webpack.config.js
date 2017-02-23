@@ -3,7 +3,7 @@ const webpack = require('webpack');
 
 
 module.exports = {
-  devtool: 'cheap-module-eval-source-map',
+  devtool: '#source-maps',
   entry: [
     'webpack-hot-middleware/client',
     './src/index',
@@ -22,12 +22,12 @@ module.exports = {
     }),
   ],
   resolve: {
-    extensions: ['', '.js'],
+    extensions: ['.js'],
   },
   module: {
     loaders: [{
       test: /\.js$/,
-      loaders: ['babel'],
+      loaders: ['babel-loader'],
       exclude: /node_modules/,
     }],
   },
