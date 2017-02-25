@@ -17,12 +17,13 @@ export default class Match extends Component {
   render() {
     const { winner, loser, score, tournament, time, hide } = this.props;
     return (
-      <tr>
+      <tr className="match">
         <td><PlayerLink name={winner} /> > <PlayerLink name={loser} /></td>
         <td>{score}</td>
         { hide.includes('tournament') ? null :
           <td><TournamentLink {...tournament} /></td> }
-        <td>{moment(time).fromNow()}</td>
+          { hide.includes('time') ? null :
+            <td>{moment(time).fromNow()}</td> }
       </tr>
     );
   }

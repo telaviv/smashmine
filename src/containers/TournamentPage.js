@@ -26,7 +26,7 @@ class TournamentPage extends Component {
     return (
       <div>
         <h1>{tournament.title}</h1>
-        <Matches matches={matches} hide={['tournament']} />
+        <Matches matches={matches} hide={['tournament', 'time']} />
       </div>
     );
   }
