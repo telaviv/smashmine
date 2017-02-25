@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import { fetchTournamentInfo } from '../actions/tournament';
 import { connect } from 'react-redux';
+import { fetchTournamentInfo } from '../actions/tournament';
+import Matches from '../components/Matches';
 
 class TournamentPage extends Component {
 
@@ -8,7 +9,8 @@ class TournamentPage extends Component {
     id: PropTypes.string.isRequired,
     dispatch: PropTypes.func.isRequired,
     showLoader: PropTypes.bool.isRequired,
-    tournamentInfo: PropTypes.object.isRequired,
+    tournament: PropTypes.object,
+    matches: PropTypes.array,
   }
 
   componentWillMount() {
@@ -17,16 +19,14 @@ class TournamentPage extends Component {
   }
 
   render() {
-    const { showLoader, tournamentInfo } = this.props;
-    let component;
+    const { showLoader, tournament, matches } = this.props;
     if (showLoader) {
-      component = <p>Loading ... </p>;
-    } else {
-      component = <h1>{tournamentInfo.tournament.title}</h1>;
+      return <p>Loading ... </p>;
     }
     return (
       <div>
-        {component}
+        <h1>{tournament.title}</h1>
+        <Matches matches={matches} hide={['tournament']} />
       </div>
     );
   }
@@ -37,7 +37,8 @@ function mapStateToProps(state, ownProps) {
   return {
     id: ownProps.params.id,
     showLoader: !tournament,
-    tournamentInfo: { tournament, matches },
+    tournament: tournament,
+    matches: matches,
   };
 }
 
