@@ -3,7 +3,7 @@ import isoFetch from 'isomorphic-fetch';
 import URI from 'urijs';
 import { SubmissionError } from 'redux-form';
 
-const BASE_URL = 'http://localhost:3001/';
+const BASE_URL = 'https://api.smashmine.com/';
 
 function capitalizeFirstCharacter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
