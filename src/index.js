@@ -1,3 +1,5 @@
+import './styles/main.css';
+
 import React from 'react';
 import { render } from 'react-dom';
 import Root from './containers/Root';

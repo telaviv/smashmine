@@ -7,7 +7,7 @@ const playerField = ({ input, label, type, meta: { touched, error } }) => (
     <input {...input} placeholder={label} type={type}/>
     {touched && error && <span>{error}</span>}
   </div>
-);
+)
 
 export class CompareForm extends Component {
   static propTypes = {
