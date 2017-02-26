@@ -27,7 +27,7 @@ class ComparisonLoader extends Component {
       return <p>Loading ...</p>;
     }
 
-    return <Comparison { ...comparison } />;
+    return <Comparison {...comparison} />;
   }
 }
 

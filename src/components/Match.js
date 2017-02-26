@@ -20,10 +20,10 @@ export default class Match extends Component {
       <tr className="match">
         <td><PlayerLink name={winner} /> > <PlayerLink name={loser} /></td>
         <td>{score}</td>
-        { hide.includes('tournament') ? null :
-          <td><TournamentLink {...tournament} /></td> }
-          { hide.includes('time') ? null :
-            <td>{moment(time).fromNow()}</td> }
+        {hide.includes('tournament') ? null :
+          <td><TournamentLink {...tournament} /></td>}
+        {hide.includes('time') ? null :
+         <td>{moment(time).fromNow()}</td>}
       </tr>
     );
   }

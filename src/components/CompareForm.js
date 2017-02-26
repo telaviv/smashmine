@@ -1,13 +1,14 @@
+/* eslint-disable react/prop-types */
 import React, { Component, PropTypes } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { If, Then } from 'react-if';
 
 const playerField = ({ input, label, type, meta: { touched, error } }) => (
   <div>
-    <input {...input} placeholder={label} type={type}/>
+    <input {...input} placeholder={label} type={type} />
     {touched && error && <span>{error}</span>}
   </div>
-)
+);
 
 export class CompareForm extends Component {
   static propTypes = {

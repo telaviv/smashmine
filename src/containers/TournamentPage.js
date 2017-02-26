@@ -37,8 +37,8 @@ function mapStateToProps(state, ownProps) {
   return {
     id: ownProps.params.id,
     showLoader: !tournament,
-    tournament: tournament,
-    matches: matches,
+    tournament,
+    matches,
   };
 }
 

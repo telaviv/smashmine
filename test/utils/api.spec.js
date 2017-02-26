@@ -159,7 +159,7 @@ describe('utils', () => {
         fetch(path, { player }, ifetch);
 
         expect(ifetch).to.have.been.calledWith(
-          'http://localhost:3001/path?player=p1');
+          'https://api.smashmine.com/path?player=p1');
       });
 
       it('converts data to json on success', () => {
