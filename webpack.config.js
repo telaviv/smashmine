@@ -22,7 +22,7 @@ module.exports = {
     }),
   ],
   resolve: {
-    extensions: ['.js', '.css'],
+    extensions: ['.js'],
   },
   module: {
     rules: [{
@@ -32,6 +32,13 @@ module.exports = {
     }, {
       test: /\.css$/,
       use: ['style-loader', 'css-loader'],
+    }, {
+      test: /\.less$/,
+      use: [
+        'style-loader',
+        { loader: 'css-loader', options: { importLoaders: 1 } },
+        'less-loader'
+      ]
     }],
   },
 };
