@@ -26,13 +26,14 @@ export class CompareForm extends Component {
   render() {
     const { handleSubmit, error } = this.props;
     return (
-      <form name="compare" onSubmit={handleSubmit(this.submit.bind(this))} >
+      <form className="compare-form" name="compare" onSubmit={handleSubmit(this.submit.bind(this))} >
         <Field name="player1" label="Shaky" component={playerField} />
         <Field name="player2" label="Trevonte" component={playerField} />
         <If condition={!!error}>
           <Then><span className="error">{error}</span></Then>
         </If>
-        <button type="submit">Submit</button>
+        <div className="compare-form__info">Enter players to compare tournament data.</div>
+        <button type="submit">Compare</button>
       </form>
     );
   }

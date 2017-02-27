@@ -18,7 +18,7 @@ export class ComparePage extends Component {
   render() {
     const { isFetching } = this.props;
     return (
-      <div>
+      <div className="ComparePage">
         <CompareForm />
         <If condition={isFetching} >
           <Then><p>Loading ... </p></Then>
