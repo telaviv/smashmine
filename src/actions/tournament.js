@@ -1,7 +1,8 @@
 /* eslint no-console: 0 */
 import { replace } from 'react-router-redux';
-import { fetch as apiFetch } from '../utils/api';
 import 'urijs/src/URITemplate';
+import { fetch as apiFetch } from '../utils/api';
+
 
 export const REQUEST_TOURNAMENT_INFO = 'REQUEST_TOURNAMENT_INFO';
 export const RECIEVE_TOURNAMENT_INFO = 'RECIEVE_TOURNAMENT_INFO';
@@ -23,10 +24,10 @@ export function fetchTournamentInfo(tournament, fetch = apiFetch) {
     dispatch(requestTournamentInfo());
 
     return fetch('tournament', { id: tournament })
-      .then(json => {
+      .then((json) => {
         dispatch(receiveTournamentInfo(json));
       })
-      .catch(err => {
+      .catch((err) => {
         dispatch({ type: TOURNAMENT_INFO_REQUEST_FAILED });
         dispatch(replace('/not-found'));
         throw err;

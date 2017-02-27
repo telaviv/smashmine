@@ -29,7 +29,7 @@ describe('actions', () => {
         submitCompare(p1, p2, fetch)(dispatch);
 
         expect(fetch).to.have.been.calledWith(
-          'compare', { player1: p1, player2: p2 }
+          'compare', { player1: p1, player2: p2 },
         );
       });
 

@@ -50,7 +50,7 @@ describe('actions', () => {
 
         return fetchPlayerInfo(player, fetch)(dispatch).catch(() => {
           expect(dispatch).to.have.been.calledWith(
-            { type: PLAYER_INFO_REQUEST_FAILED }
+            { type: PLAYER_INFO_REQUEST_FAILED },
           );
         });
       });

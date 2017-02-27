@@ -14,6 +14,6 @@ export default function configureStore(initialState) {
   return createStore(
     rootReducer,
     initialState,
-    applyMiddleware(thunk, router)
+    applyMiddleware(thunk, router),
   );
 }

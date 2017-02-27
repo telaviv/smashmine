@@ -1,3 +1,5 @@
+/* eslint-disable no-multi-assign */
+
 import { jsdom } from 'jsdom';
 import chai from 'chai';
 import sinonChai from 'sinon-chai';

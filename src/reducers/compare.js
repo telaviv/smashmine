@@ -13,7 +13,7 @@ function mergeComparisonCache(state, data, comparison) {
   return Object.assign(
     {},
     cachedComparisons,
-    { [sprintf('%s-%s', player1, player2)]: comparison }
+    { [sprintf('%s-%s', player1, player2)]: comparison },
   );
 }
 

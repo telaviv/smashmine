@@ -27,10 +27,10 @@ export default function configureStore(initialState) {
       DevTools.instrument(),
       persistState(
         window.location.href.match(
-          /[?&]debug_session=([^&]+)\b/
-        )
-      )
-    )
+          /[?&]debug_session=([^&]+)\b/,
+        ),
+      ),
+    ),
   );
 
   if (module.hot) {

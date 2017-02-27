@@ -1,8 +1,8 @@
 /* eslint no-console: 0 */
-import { fetch as apiFetch } from '../utils/api';
 import { push } from 'react-router-redux';
 import URI from 'urijs';
 import 'urijs/src/URITemplate';
+import { fetch as apiFetch } from '../utils/api';
 
 export const REQUEST_COMPARISON = 'REQUEST_COMPARISON';
 export const RECIEVE_COMPARISON = 'RECIEVE_COMPARISON';
@@ -29,11 +29,11 @@ export function submitCompare(player1, player2, fetch = apiFetch) {
     dispatch(requestComparison());
 
     return fetch('compare', { player1, player2 })
-      .then(json => {
+      .then((json) => {
         dispatch(receiveComparison(json));
         dispatch(push(compareRedirectURL(json.player1.name, json.player2.name)));
       })
-      .catch(err => {
+      .catch((err) => {
         dispatch({ type: COMPARISON_FAILED });
         throw err;
       });

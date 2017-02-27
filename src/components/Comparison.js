@@ -15,14 +15,14 @@ export default class Comparison extends Component {
   setRecord() {
     const { player1: { name: p1name },
             player2: { name: p2name },
-            matches: matches } = this.props;
+            matches } = this.props;
     let p1wins = 0;
     let p2wins = 0;
-    matches.forEach(match => {
+    matches.forEach((match) => {
       if (p1name === match.winner) {
-        p1wins++;
+        p1wins += 1;
       } else if (p2name === match.winner) {
-        p2wins++;
+        p2wins += 1;
       }
     });
     return sprintf('%i-%i', p1wins, p2wins);

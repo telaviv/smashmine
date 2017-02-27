@@ -18,7 +18,7 @@ export default class Match extends Component {
     const { winner, loser, score, tournament, time, hide } = this.props;
     return (
       <tr className="match">
-        <td><PlayerLink name={winner} /> > <PlayerLink name={loser} /></td>
+        <td><PlayerLink name={winner} /> &gt; <PlayerLink name={loser} /></td>
         <td>{score}</td>
         {hide.includes('tournament') ? null :
           <td><TournamentLink {...tournament} /></td>}

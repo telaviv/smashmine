@@ -9,12 +9,8 @@ export default class PlayerMatch extends Component {
     tournament: PropTypes.object.isRequired,
     opponent: PropTypes.string.isRequired,
     won: PropTypes.bool.isRequired,
-    winPercentage: PropTypes.number.isRequired,
-    time: PropTypes.number.isRequired,
     startRating: PropTypes.object.isRequired,
     endRating: PropTypes.object.isRequired,
-    opponentRating: PropTypes.object.isRequired,
-    score: PropTypes.string.isRequired,
   }
 
   winMessage() {

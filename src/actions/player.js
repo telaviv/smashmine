@@ -1,8 +1,8 @@
 /* eslint no-console: 0 */
 import { replace } from 'react-router-redux';
-import { fetch as apiFetch } from '../utils/api';
 import URI from 'urijs';
 import 'urijs/src/URITemplate';
+import { fetch as apiFetch } from '../utils/api';
 
 export const REQUEST_PLAYER_INFO = 'REQUEST_PLAYER_INFO';
 export const RECIEVE_PLAYER_INFO = 'RECIEVE_PLAYER_INFO';
@@ -28,13 +28,13 @@ export function fetchPlayerInfo(player, fetch = apiFetch) {
     dispatch(requestPlayerInfo());
 
     return fetch('player', { name: player })
-      .then(json => {
+      .then((json) => {
         dispatch(receivePlayerInfo(json));
         if (json.player.name !== player) {
           dispatch(replace(playerInfoURL(json.player.name)));
         }
       })
-      .catch(err => {
+      .catch((err) => {
         dispatch({ type: PLAYER_INFO_REQUEST_FAILED });
         dispatch(replace('/not-found'));
         throw err;

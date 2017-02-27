@@ -44,14 +44,14 @@ function handleServerErrors(response) {
 
   return response
     .json()
-    .then(err => {
+    .then((err) => {
       const errors = normalizeServerErrors(err);
       throw new SubmissionError(errors);
     })
     .catch((err) => {
       if (!(err instanceof SubmissionError)) {
         throw new SubmissionError(
-          { _error: "Something wen't wrong please try again later" }
+          { _error: "Something wen't wrong please try again later" },
         );
       }
       throw err;
@@ -62,7 +62,7 @@ function handleFetchErrors(err) {
   console.error(err);
   if (err instanceof TypeError) {
     throw new SubmissionError(
-      { _error: "Something wen't wrong please try again later" }
+      { _error: "Something wen't wrong please try again later" },
     );
   } else {
     throw err;

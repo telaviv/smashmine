@@ -143,7 +143,7 @@ function mockFetchFromRawBody(body, status = 200) {
 }
 
 function mockErrorFetch() {
-  return stub().returns(Promise.reject(new TypeError));
+  return stub().returns(Promise.reject(new TypeError()));
 }
 
 

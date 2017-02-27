@@ -15,14 +15,14 @@ export default function createDevToolsWindow(store) {
   const win = window.open(
     null,
     name,
-    'menubar=no,location=no,resizable=yes,scrollbars=no,status=no'
+    'menubar=no,location=no,resizable=yes,scrollbars=no,status=no',
   );
 
   // Pop-ups are blocked by default, so it may open async
   if (!win) {
     console.warn(
       'Couldn\'t open the dev Tools, probably the popup window ' +
-      'was blocked, please enable the popup window for the current page.\n'
+      'was blocked, please enable the popup window for the current page.\n',
     );
     return;
   }
@@ -36,6 +36,6 @@ export default function createDevToolsWindow(store) {
   // Wait a little bit for it to reload, then render.
   setTimeout(() => render(
     <DevTools store={store} />,
-    win.document.body.appendChild(document.createElement('div'))
+    win.document.body.appendChild(document.createElement('div')),
   ), 10);
 }

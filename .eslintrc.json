@@ -1,0 +1,23 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "global-require": 0,
+    "no-restricted-syntax": 0,
+    "import/first": 0,
+    "import/no-named-as-default": 0,
+    "react/forbid-prop-types": 1,
+    "react/jsx-filename-extension": 0,
+    "react/jsx-indent": 0,
+    "react/jsx-no-bind": 0,
+    "react/prefer-stateless-function": 0,
+    "react/require-default-props": 0
+  },
+  "plugins": [
+    "react"
+  ]
+}
