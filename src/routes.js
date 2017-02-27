@@ -15,6 +15,7 @@ const {
 
 export default (
   <Route component={App}>
+    <Route path="/" component={ComparePage} />
     <Route path="/compare" component={ComparePage} >
       <Route path=":player1/:player2" component={Comparison} />
     </Route>
