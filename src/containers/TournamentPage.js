@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { fetchTournamentInfo } from '../actions/tournament';
 import Matches from '../components/Matches';
+import apiPropTypes from 'utils/proptypes';
 
 class TournamentPage extends Component {
 
@@ -9,8 +10,8 @@ class TournamentPage extends Component {
     id: PropTypes.string.isRequired,
     dispatch: PropTypes.func.isRequired,
     showLoader: PropTypes.bool.isRequired,
-    tournament: PropTypes.object,
-    matches: PropTypes.array,
+    tournament: apiPropTypes.tournament,
+    matches: PropTypes.arrayOf(apiPropTypes.match),
   }
 
   componentWillMount() {

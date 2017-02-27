@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { fetchPlayerInfo } from '../actions/player';
 import PlayerInfo from '../components/PlayerInfo';
+import apiPropTypes from 'utils/proptypes';
 
 class PlayerPage extends Component {
 
@@ -9,7 +10,10 @@ class PlayerPage extends Component {
     name: PropTypes.string.isRequired,
     dispatch: PropTypes.func.isRequired,
     showLoader: PropTypes.bool.isRequired,
-    playerInfo: PropTypes.object.isRequired,
+    playerInfo: PropTypes.shape({
+      player: apiPropTypes.player.isRequired,
+      matches: PropTypes.arrayOf(apiPropTypes.match).isRequired,
+    }),
   }
 
   componentWillMount() {
@@ -35,10 +39,11 @@ class PlayerPage extends Component {
 
 function mapStateToProps(state, ownProps) {
   const { player, matches } = state.player;
+  const showLoader = !(player && matches);
   return {
     name: ownProps.params.player,
-    showLoader: !(player && matches),
-    playerInfo: { player, matches },
+    showLoader,
+    playerInfo: showLoader ? undefined : { player, matches },
   };
 }
 

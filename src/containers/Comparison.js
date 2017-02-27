@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as CompareActions from '../actions/compare';
 import Comparison from '../components/Comparison';
+import apiPropTypes from 'utils/proptypes';
 
 class ComparisonLoader extends Component {
 
@@ -11,7 +12,7 @@ class ComparisonLoader extends Component {
     p2name: PropTypes.string.isRequired,
     fetchData: PropTypes.bool.isRequired,
     loadingData: PropTypes.bool.isRequired,
-    comparison: PropTypes.object,
+    comparison: apiPropTypes.comparison,
   }
 
   componentWillMount() {
@@ -26,8 +27,7 @@ class ComparisonLoader extends Component {
     if (loadingData) {
       return <p>Loading ...</p>;
     }
-
-    return <Comparison {...comparison} />;
+    return <Comparison comparison={comparison} />;
   }
 }
 

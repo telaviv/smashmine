@@ -2,15 +2,16 @@ import React, { Component, PropTypes } from 'react';
 import PlayerLink from './PlayerLink';
 import TournamentLink from './TournamentLink';
 import { sprintf } from 'sprintf-js';
+import apiPropTypes from 'utils/proptypes';
 
 export default class PlayerMatch extends Component {
 
   static propTypes = {
-    tournament: PropTypes.object.isRequired,
+    tournament: apiPropTypes.tournament.isRequired,
     opponent: PropTypes.string.isRequired,
     won: PropTypes.bool.isRequired,
-    startRating: PropTypes.object.isRequired,
-    endRating: PropTypes.object.isRequired,
+    startRating: apiPropTypes.rating.isRequired,
+    endRating: apiPropTypes.rating.isRequired,
   }
 
   winMessage() {

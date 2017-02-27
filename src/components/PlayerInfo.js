@@ -1,11 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import PlayerMatch from './PlayerMatch';
+import apiPropTypes from 'utils/proptypes';
 
 export default class PlayerInfo extends Component {
 
   static propTypes = {
-    player: PropTypes.object.isRequired,
-    matches: PropTypes.array.isRequired,
+    player: apiPropTypes.player.isRequired,
+    matches: PropTypes.arrayOf(apiPropTypes.match).isRequired,
   }
 
   render() {

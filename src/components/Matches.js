@@ -1,11 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import Match from './Match';
+import apiPropTypes from 'utils/proptypes';
 
 export default class Matches extends Component {
 
   static propTypes = {
-    matches: PropTypes.array.isRequired,
-    hide: PropTypes.array,
+    matches: PropTypes.arrayOf(apiPropTypes.match).isRequired,
+    hide: PropTypes.arrayOf(PropTypes.string),
   }
 
   render() {
@@ -14,7 +15,7 @@ export default class Matches extends Component {
       <table>
         <tbody>
           {matches.map(match => (
-             <Match key={match.id} hide={hide} {...match} />
+             <Match key={match.id} hide={hide} match={match} />
            ))}
         </tbody>
       </table>

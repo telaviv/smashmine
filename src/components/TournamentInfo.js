@@ -1,9 +1,10 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import apiPropTypes from 'utils/proptypes';
 
 export default class PlayerInfo extends Component {
 
   static propTypes = {
-    tournament: PropTypes.object.isRequired,
+    tournament: apiPropTypes.tournament.isRequired,
   }
 
   render() {

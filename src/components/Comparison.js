@@ -1,21 +1,19 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { sprintf } from 'sprintf-js';
 import PlayerStats from './PlayerStats';
 import Matches from './Matches';
+import apiPropTypes from 'utils/proptypes';
 
 export default class Comparison extends Component {
 
   static propTypes = {
-    player1: PropTypes.object.isRequired,
-    player2: PropTypes.object.isRequired,
-    matches: PropTypes.array.isRequired,
-    winPercentage: PropTypes.number.isRequired,
+    comparison: apiPropTypes.comparison.isRequired,
   }
 
   setRecord() {
     const { player1: { name: p1name },
             player2: { name: p2name },
-            matches } = this.props;
+            matches } = this.props.comparison;
     let p1wins = 0;
     let p2wins = 0;
     matches.forEach((match) => {
@@ -29,12 +27,12 @@ export default class Comparison extends Component {
   }
 
   winPercentage() {
-    const { winPercentage } = this.props;
+    const { winPercentage } = this.props.comparison;
     return sprintf('%.1f%%', winPercentage * 100);
   }
 
   render() {
-    const { player1, player2, matches } = this.props;
+    const { player1, player2, matches } = this.props.comparison;
     return (
       <div>
         <PlayerStats {...player1} />
