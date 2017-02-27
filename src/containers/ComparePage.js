@@ -16,14 +16,14 @@ export class ComparePage extends Component {
   }
 
   render() {
-    const { isFetching } = this.props;
+    const { isFetching, children } = this.props;
     return (
       <div className="ComparePage">
-        <NavBar expand />
+        <NavBar expand={!children} />
         <CompareForm />
         <If condition={isFetching} >
           <Then><p>Loading ... </p></Then>
-          <Else>{this.props.children}</Else>
+          <Else>{children}</Else>
         </If>
       </div>
     );
