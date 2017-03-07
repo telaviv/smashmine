@@ -34,7 +34,7 @@ export default class Comparison extends Component {
   render() {
     const { player1, player2, matches } = this.props.comparison;
     return (
-      <div>
+      <div className="Comparison">
         <PlayerStats {...player1} />
         <PlayerStats {...player2} />
         <p>{player1.name} has a {this.winPercentage()} chance of beating {player2.name}</p>

@@ -14,14 +14,16 @@ export default class Match extends Component {
   render() {
     const { hide, match: { winner, loser, score, tournament, time } } = this.props;
     return (
-      <tr className="match">
-        <td><PlayerLink name={winner} /> &gt; <PlayerLink name={loser} /></td>
-        <td>{score}</td>
-        {hide.includes('tournament') ? null :
-          <td><TournamentLink {...tournament} /></td>}
-        {hide.includes('time') ? null :
-         <td>{moment(time).fromNow()}</td>}
-      </tr>
+      <div className="match">
+        <div className="match__row">
+          {hide.includes('tournament') ? null : <TournamentLink {...tournament} />}
+          {hide.includes('time') ? null : moment(time).fromNow()}
+        </div>
+        <div className="match__row">
+          <p><PlayerLink name={winner} /> &gt; <PlayerLink name={loser} /></p>
+          <p>{score}</p>
+        </div>
+      </div>
     );
   }
 }

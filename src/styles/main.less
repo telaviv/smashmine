@@ -27,15 +27,29 @@ body {
     font-family: 'Didact Gothic', sans-serif;
     color: @dark-grey;
     margin: 0;
+}
 
+a, a:link, a:visited {
+    color: black;
 }
 
 #root, [data-reactroot] {
     overflow: auto;
 }
 
+.TournamentLink {
+    a& {
+        font-size: 12px;
+        text-decoration: underline;
+        text-overflow: ellipsis;
+        max-width: 70%;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+}
+
 .ComparePage {
-    background-color: @light-grey;
+    background-color: white;
     width: 100%;
     height: 100%;
     overflow: auto;
@@ -76,11 +90,43 @@ body {
 }
 
 .nav-bar {
-    height: 60px;
-    background-color: white;
+    height: 40px;
+    background-color: @light-grey;
+    position: relative;
     .transition(height 1s ease);
 
     &.expand {
         height: 25vh;
     }
+
+    &__logo {
+        margin: 0 auto;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+}
+
+.Comparison {
+    max-width: 600px;
+    padding: 25px;
+    margin: 0 auto;
+}
+
+.match {
+    border-top: 1px solid;
+    border-color: @light-grey;
+    padding: 10px 0 0;
+
+    &__row {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.PlayerStats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

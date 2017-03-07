@@ -17,7 +17,7 @@ export default class TournamentLink extends Component {
   render() {
     const { title } = this.props;
     return (
-      <a href={this.url()}>{title}</a>
+      <a className="TournamentLink" href={this.url()}>{title}</a>
     );
   }
 }

@@ -13,11 +13,9 @@ export default class PlayerStats extends Component {
   render() {
     const { name, rating, stddev } = this.props;
     return (
-      <div>
-        <p>
-          <PlayerLink name={name} />
-          <span> rating: {sprintf('{%.0f, %.0f}', rating, stddev)}</span>
-        </p>
+      <div className="PlayerStats">
+        <PlayerLink name={name} />
+        <span> rating: {sprintf('{%.0f, %.0f}', rating, stddev)}</span>
       </div>
     );
   }

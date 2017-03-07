@@ -12,7 +12,9 @@ export default class NavBar extends Component {
       classes.push('expand');
     }
     return (
-      <div className={classes.join(' ')} />
+      <div className={classes.join(' ')} >
+        <img className="nav-bar__logo" src="/static/sm_logo.svg" alt="smashmine" />
+      </div>
     );
   }
 }
