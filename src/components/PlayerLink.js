@@ -16,7 +16,7 @@ export default class PlayerLink extends Component {
   render() {
     const { name } = this.props;
     return (
-      <a href={this.url()}>{name}</a>
+      <a className="PlayerLink" href={this.url()}>{name}</a>
     );
   }
 }

@@ -15,7 +15,7 @@ export default class PlayerStats extends Component {
     return (
       <div className="PlayerStats">
         <PlayerLink name={name} />
-        <span> rating: {sprintf('{%.0f, %.0f}', rating, stddev)}</span>
+        <span> rating: {sprintf('(%.0f, %.0f)', rating, stddev)}</span>
       </div>
     );
   }

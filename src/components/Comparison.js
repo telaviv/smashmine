@@ -35,10 +35,15 @@ export default class Comparison extends Component {
     const { player1, player2, matches } = this.props.comparison;
     return (
       <div className="Comparison">
-        <PlayerStats {...player1} />
-        <PlayerStats {...player2} />
-        <p>{player1.name} has a {this.winPercentage()} chance of beating {player2.name}</p>
-        <p>Set Record: {this.setRecord()}</p>
+        <div className="Comparison__vs">
+          <PlayerStats {...player1} />
+          <span>VS</span>
+          <PlayerStats {...player2} />
+        </div>
+        <div className="Comparison__description">
+          <p>{player1.name} has a {this.winPercentage()} chance of beating {player2.name}</p>
+          <p>Set Record: {this.setRecord()}</p>
+        </div>
         <Matches matches={matches} />
       </div>
     );
