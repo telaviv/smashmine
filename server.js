@@ -3,6 +3,7 @@ const path = require('path');
 const express = require('express');
 const webpack = require('webpack');
 const config = require('./webpack.config');
+const favicon = require('serve-favicon')
 const port = process.env.PORT || 3000;
 
 const app = express();
@@ -18,6 +19,8 @@ app.use(require('webpack-dev-middleware')(compiler, {
 app.use(require('webpack-hot-middleware')(compiler));
 
 app.use('/static', express.static('assets'))
+
+app.use(favicon('favicon.ico'))
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
