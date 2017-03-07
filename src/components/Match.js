@@ -15,7 +15,7 @@ export default class Match extends Component {
     const { hide, match: { winner, loser, score, tournament, time } } = this.props;
     return (
       <div className="match">
-        <div className="match__row">
+        <div className="match__row small">
           {hide.includes('tournament') ? null : <TournamentLink {...tournament} />}
           {hide.includes('time') ? null : moment(time).fromNow()}
         </div>
