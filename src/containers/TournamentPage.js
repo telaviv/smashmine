@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
+
 import { fetchTournamentInfo } from '../actions/tournament';
 import Matches from '../components/Matches';
 import apiPropTypes from 'utils/proptypes';
@@ -31,6 +33,10 @@ class TournamentPage extends Component {
         <NavBar />
         <PageContent>
           <h1>{tournament.title}</h1>
+          <div className="TournamentPage__meta">
+            <p>{moment(tournament.time).fromNow()}</p>
+            <a href={tournament.url}>Bracket</a>
+          </div>
           <Matches matches={matches} hide={['tournament', 'time']} />
         </PageContent>
       </div>

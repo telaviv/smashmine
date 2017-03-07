@@ -6,7 +6,7 @@ export default class PlayerInfo extends Component {
 
   static propTypes = {
     player: apiPropTypes.player.isRequired,
-    matches: PropTypes.arrayOf(apiPropTypes.match).isRequired,
+    matches: PropTypes.arrayOf(apiPropTypes.playerMatch).isRequired,
   }
 
   render() {
@@ -24,7 +24,7 @@ export default class PlayerInfo extends Component {
           <table>
             <tbody>
               {matches.map(match => (
-                 <PlayerMatch {...match} key={match.id} />
+                 <PlayerMatch match={match} key={match.id} />
                ))}
             </tbody>
           </table>

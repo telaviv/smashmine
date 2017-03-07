@@ -1,4 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import moment from 'moment';
+
 import PlayerLink from './PlayerLink';
 import TournamentLink from './TournamentLink';
 import { sprintf } from 'sprintf-js';
@@ -7,31 +9,29 @@ import apiPropTypes from 'utils/proptypes';
 export default class PlayerMatch extends Component {
 
   static propTypes = {
-    tournament: apiPropTypes.tournament.isRequired,
-    opponent: PropTypes.string.isRequired,
-    won: PropTypes.bool.isRequired,
-    startRating: apiPropTypes.rating.isRequired,
-    endRating: apiPropTypes.rating.isRequired,
-  }
-
-  winMessage() {
-    const { won } = this.props;
-    return won ? 'Win' : 'Loss';
+    match: apiPropTypes.playerMatch.isRequired,
   }
 
   ratingDiff() {
-    const { startRating, endRating } = this.props;
-    return endRating.rating - startRating.rating;
+    const { startRating, endRating, won } = this.props.match;
+    const diff = endRating.rating - startRating.rating;
+    const winMessage = won ? 'Win' : 'Loss';
+    return sprintf(' %s %.1f', winMessage, diff);
   }
 
   render() {
-    const { opponent, tournament } = this.props;
+    const { opponent, tournament, time } = this.props.match;
     return (
-      <tr>
-        <td><PlayerLink name={opponent} /></td>
-        <td><TournamentLink {...tournament} /></td>
-        <td>{sprintf(' %s %.1f', this.winMessage(), this.ratingDiff())}</td>
-      </tr>
+      <div className="match">
+        <div className="match__row small">
+          <TournamentLink {...tournament} />
+          <p>{moment(time).fromNow()}</p>
+        </div>
+        <div className="match__row">
+          <p><PlayerLink name={opponent} /></p>
+          <p>{this.ratingDiff()}</p>
+        </div>
+      </div>
     );
   }
 }

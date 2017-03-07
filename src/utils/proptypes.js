@@ -6,22 +6,34 @@ const player = PropTypes.shape({
   stddev: PropTypes.number.isRequired,
 });
 
+const tournament = PropTypes.shape({
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  time: PropTypes.number,
+  url: PropTypes.string,
+});
+
 const match = PropTypes.shape({
   winner: PropTypes.string,
   loser: PropTypes.string,
   score: PropTypes.string.isRequired,
-  tournament: PropTypes.object,
+  tournament: tournament.isRequired,
   time: PropTypes.number.isRequired,
   hide: PropTypes.array,
 });
 
-const tournament = PropTypes.shape({
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-});
-
 const rating = PropTypes.shape({
   rating: PropTypes.number.isRequired,
+});
+
+const playerMatch = PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  opponent: PropTypes.string.isRequired,
+  startRating: rating.isRequired,
+  endRating: rating.isRequired,
+  won: PropTypes.bool.isRequired,
+  tournament: tournament.isRequired,
+  time: PropTypes.number.isRequired,
 });
 
 const comparison = PropTypes.shape({
@@ -34,7 +46,7 @@ const comparison = PropTypes.shape({
 export default {
   player,
   match,
-  rating,
+  playerMatch,
   tournament,
   comparison,
 };
