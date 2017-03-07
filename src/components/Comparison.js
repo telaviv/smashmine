@@ -41,7 +41,8 @@ export default class Comparison extends Component {
           <PlayerStats {...player2} />
         </div>
         <div className="Comparison__description">
-          <p>{player1.name} has a {this.winPercentage()} chance of beating {player2.name}</p>
+          <p>{player1.name} has a {this.winPercentage()} chance</p>
+          <p>of beating {player2.name}</p>
           <p>Set Record: {this.setRecord()}</p>
         </div>
         <Matches matches={matches} />

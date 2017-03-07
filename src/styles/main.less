@@ -122,6 +122,9 @@ a, a:link, a:visited {
     &__description {
         p {
             margin: 0;
+            &:nth-of-type(3) {
+                margin: 10px 0;
+            }
         }
         text-align: center;
         margin: 15px 0;
@@ -142,6 +145,10 @@ a, a:link, a:visited {
 .PlayerLink {
     font-size: 20px;
     text-decoration: none;
+
+    @media (max-width: 600px) {
+        font-size: 18px;
+    }
 }
 
 .PlayerStats {
