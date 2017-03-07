@@ -16,7 +16,7 @@ export default class PlayerMatch extends Component {
     const { startRating, endRating, won } = this.props.match;
     const diff = endRating.rating - startRating.rating;
     const winMessage = won ? 'Win' : 'Loss';
-    return sprintf(' %s %.1f', winMessage, diff);
+    return sprintf(' %s — %.1f', winMessage, diff);
   }
 
   render() {
@@ -29,7 +29,7 @@ export default class PlayerMatch extends Component {
         </div>
         <div className="match__row">
           <p><PlayerLink name={opponent} /></p>
-          <p>{this.ratingDiff()}</p>
+          <p className="match__rating-diff">{this.ratingDiff()}</p>
         </div>
       </div>
     );
