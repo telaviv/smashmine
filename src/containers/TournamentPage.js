@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { fetchTournamentInfo } from '../actions/tournament';
 import Matches from '../components/Matches';
 import apiPropTypes from 'utils/proptypes';
+import NavBar from '../components/NavBar';
+import PageContent from '../components/PageContent';
 
 class TournamentPage extends Component {
 
@@ -25,9 +27,12 @@ class TournamentPage extends Component {
       return <p>Loading ... </p>;
     }
     return (
-      <div>
-        <h1>{tournament.title}</h1>
-        <Matches matches={matches} hide={['tournament', 'time']} />
+      <div className="TournamentPage">
+        <NavBar />
+        <PageContent>
+          <h1>{tournament.title}</h1>
+          <Matches matches={matches} hide={['tournament', 'time']} />
+        </PageContent>
       </div>
     );
   }
