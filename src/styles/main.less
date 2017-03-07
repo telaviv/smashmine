@@ -137,12 +137,12 @@ a, a:link, a:visited {
 .match {
     border-top: 1px solid;
     border-color: @light-grey;
-    padding: 10px 0 0;
 
     &__row {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        height: 35px;
     }
 
     &__rating-diff {
@@ -179,5 +179,15 @@ a, a:link, a:visited {
         a {
             text-decoration: underline;
         }
+    }
+}
+
+.PlayerInfo {
+    &__meta {
+        padding: 10px 0;
+    }
+
+    .PlayerLink {
+        font-size: 30px;
     }
 }
