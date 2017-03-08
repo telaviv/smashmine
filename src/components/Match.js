@@ -13,12 +13,20 @@ export default class Match extends Component {
 
   render() {
     const { hide, match: { winner, loser, score, tournament, time } } = this.props;
+    let tournamentRow;
+    if (hide.includes('tournament') || hide.includes('time')) {
+      tournamentRow = null;
+    } else {
+      tournamentRow = (
+        <div className="match__row small">
+          <TournamentLink {...tournament} />
+          {moment(time).fromNow()}
+        </div>
+      );
+    }
     return (
       <div className="match">
-        <div className="match__row small">
-          {hide.includes('tournament') ? null : <TournamentLink {...tournament} />}
-          {hide.includes('time') ? null : moment(time).fromNow()}
-        </div>
+        { tournamentRow }
         <div className="match__row">
           <p><PlayerLink name={winner} /> &gt; <PlayerLink name={loser} /></p>
           <p>{score}</p>

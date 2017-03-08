@@ -17,8 +17,8 @@ const match = PropTypes.shape({
   winner: PropTypes.string,
   loser: PropTypes.string,
   score: PropTypes.string.isRequired,
-  tournament: tournament.isRequired,
-  time: PropTypes.number.isRequired,
+  tournament,
+  time: PropTypes.number,
   hide: PropTypes.array,
 });
 
