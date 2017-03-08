@@ -8,6 +8,8 @@ const app = express();
 
 app.use('/static', express.static('dist'))
 
+app.use('/static', express.static('assets'))
+
 app.use(favicon('favicon.ico'))
 
 app.get('*', (req, res) => {
