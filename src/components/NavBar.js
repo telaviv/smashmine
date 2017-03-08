@@ -13,7 +13,9 @@ export default class NavBar extends Component {
     }
     return (
       <div className={classes.join(' ')} >
-        <img className="nav-bar__logo" src="/static/sm_logo.svg" alt="smashmine" />
+        <a href="/">
+          <img className="nav-bar__logo" src="/static/sm_logo.svg" alt="smashmine" />
+        </a>
       </div>
     );
   }
